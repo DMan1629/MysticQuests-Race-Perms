@@ -1,0 +1,10 @@
+name: MysticQuestsRacePerms
+main: me.DMan16.MysticQuestsRacePerms.Main
+version: 1.0
+description: MysticQuestsRacePerms
+author: DMan16
+api-version: 1.16
+
+commands:
+  MysticQuestsRacePerms:
+    aliases: [mqrp]
