@@ -4,9 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
+import org.bukkit.entity.Donkey;
 import org.bukkit.entity.Horse;
+import org.bukkit.entity.Llama;
+import org.bukkit.entity.Mule;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.SkeletonHorse;
+import org.bukkit.entity.TraderLlama;
+import org.bukkit.entity.ZombieHorse;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -24,7 +31,15 @@ public class GeneralListener implements Listener {
 	
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.LOWEST)
 	public void onHorseTame(EntityTameEvent event) {
-		if (event.isCancelled() || !(event.getEntity() instanceof Horse) || !(event.getOwner() instanceof Player)) return;
+		if (event.isCancelled() || !(event.getOwner() instanceof Player)) return;
+		boolean Donkey = Main.Config.horseTameDonkey() && (event.getEntity() instanceof Donkey);
+		boolean Llama = Main.Config.horseTameLlama() && (event.getEntity() instanceof Llama);
+		boolean Mule = Main.Config.horseTameMule() && (event.getEntity() instanceof Mule);
+		boolean SkeletonHorse = Main.Config.horseTameSkeletonHorse() && (event.getEntity() instanceof SkeletonHorse);
+		boolean TraderLlama = Main.Config.horseTameTraderLlama() && (event.getEntity() instanceof TraderLlama);
+		boolean ZombieHorse = Main.Config.horseTameZombieHorse() && (event.getEntity() instanceof ZombieHorse);
+		boolean horsey = (event.getEntity() instanceof Horse) || Donkey || Llama || Mule || SkeletonHorse || TraderLlama || ZombieHorse;
+		if (!horsey) return;
 		Player player = (Player) event.getOwner();
 		if (Main.Config.horseTamePerm() == null || Main.Config.horseTamePerm().isEmpty() || Main.PermissionsManager.hasHorseTamePermission(player)) return;
 		event.setCancelled(true);
@@ -64,7 +79,7 @@ public class GeneralListener implements Listener {
 		Player player = event.getPlayer();
 		if (Main.Config.outOfWaterDamage() <= 0 || Main.Config.outOfWaterDamageInterval() <= 0) return;
 		if (!Main.PermissionsManager.hasWaterPermission(player)) return;
-		if (!event.getTo().getBlock().isLiquid() || event.getTo().getBlock().getType() == event.getFrom().getBlock().getType()) {
+		if (event.getTo().getBlock().getType() != Material.WATER) {
 			if (player.getPersistentDataContainer().has(waterDMG,PersistentDataType.STRING)) return;
 			player.getPersistentDataContainer().set(waterDMG,PersistentDataType.STRING,"");
 			new BukkitRunnable() {
@@ -87,7 +102,7 @@ public class GeneralListener implements Listener {
 		if (!(event.getEntity() instanceof Player) || (event.getAction() != EntityPotionEffectEvent.Action.CLEARED &&
 				event.getAction() != EntityPotionEffectEvent.Action.REMOVED)) return;
 		Player player = (Player) event.getEntity();
-		if (!player.getLocation().getBlock().isLiquid()) return;
+		if (!player.getLocation().getBlock().isLiquid() || !Main.PermissionsManager.hasWaterPermission(player)) return;
 		for (Effect effect : Main.Config.inWaterEffects()) effect.apply(player);
 	}
 	

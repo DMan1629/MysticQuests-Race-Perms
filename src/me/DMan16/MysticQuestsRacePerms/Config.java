@@ -15,6 +15,12 @@ public class Config extends ConfigLoader {
 	//Horse Taming
 	private String horseTamePerm;
 	private boolean horseTameOp;
+	private boolean horseTameDonkey;
+	private boolean horseTameLlama;
+	private boolean horseTameMule;
+	private boolean horseTameSkeletonHorse;
+	private boolean horseTameTraderLlama;
+	private boolean horseTameZombieHorse;
 	private String horseTameMsg;
 	private boolean horseTamePM;
 	private boolean horseTameActionBar;
@@ -60,13 +66,25 @@ public class Config extends ConfigLoader {
 		String[] horseTameMSG = {"Horse Taming - disallow horse taming without proper permission"," ",
 				"horseTamePerm - the required permission to tame a horse; leave blank to disable (String) [" + permPrefix + ".horsetame]",
 				"horseTameOp - do Op players have this permission by default (true/false) [true]",
+				"horseTameDonkey - is permission required to tame Donkeys (true/false) [false]",
+				"horseTameLlama - is permission required to tame Llamas (true/false) [false]",
+				"horseTameMule - is permission required to tame Mules (true/false) [false]",
+				"horseTameSkeletonHorse - is permission required to tame Skeleton Horses (true/false) [false]",
+				"horseTameTraderLlama - is permission required to tame Trader Llamas (true/false) [false]",
+				"horseTameZombieHorse - is permission required to tame Zombie Horses (true/false) [false]",
 				"horseTameMsg - the message sent to the player when trying to tame a horse without the permission; leave blank to disable (String) " +
-				"[&cYou do not have permission to tame horses!]",
+				"[&cYou do not have permission to tame this animal!]",
 				"horseTamePM - should a personal message be sent to the player when they try to tame a horse without permission (true/false) [true]",
 				"horseTameActionBar - should a message be displayed on the player's Action Bar when they try to tame a horse without permission (true/false) [true]"};
 		
 		horseTamePerm = ((String) addNewConfigOption(config,"horseTamePerm",permPrefix + ".horsetame",horseTameMSG)).toLowerCase();
 		horseTameOp = ((Boolean) addNewConfigOption(config,"horseTameOp",Boolean.valueOf(true),null)).booleanValue();
+		horseTameDonkey = ((Boolean) addNewConfigOption(config,"horseTameDonkey",Boolean.valueOf(false),null)).booleanValue();
+		horseTameLlama = ((Boolean) addNewConfigOption(config,"horseTameLlama",Boolean.valueOf(false),null)).booleanValue();
+		horseTameMule = ((Boolean) addNewConfigOption(config,"horseTameMule",Boolean.valueOf(false),null)).booleanValue();
+		horseTameSkeletonHorse = ((Boolean) addNewConfigOption(config,"horseTameSkeletonHorse",Boolean.valueOf(false),null)).booleanValue();
+		horseTameTraderLlama = ((Boolean) addNewConfigOption(config,"horseTameTraderLlama",Boolean.valueOf(false),null)).booleanValue();
+		horseTameZombieHorse = ((Boolean) addNewConfigOption(config,"horseTameZombieHorse",Boolean.valueOf(false),null)).booleanValue();
 		horseTameMsg = ((String) addNewConfigOption(config,"horseTameMsg","&cYou do not have permission to tame horses!",null));
 		horseTamePM = ((Boolean) addNewConfigOption(config,"horseTamePM",Boolean.valueOf(true),null)).booleanValue();
 		horseTameActionBar = ((Boolean) addNewConfigOption(config,"horseTameActionBar",Boolean.valueOf(true),null)).booleanValue();
@@ -141,6 +159,30 @@ public class Config extends ConfigLoader {
 	public boolean horseTameOp() {
 		return horseTameOp;
 	}
+	public boolean horseTameDonkey() {
+		return horseTameDonkey;
+	}
+
+	public boolean horseTameLlama() {
+		return horseTameLlama;
+	}
+
+	public boolean horseTameMule() {
+		return horseTameMule;
+	}
+
+	public boolean horseTameSkeletonHorse() {
+		return horseTameSkeletonHorse;
+	}
+
+	public boolean horseTameTraderLlama() {
+		return horseTameTraderLlama;
+	}
+
+	public boolean horseTameZombieHorse() {
+		return horseTameZombieHorse;
+	}
+
 	
 	public String horseTameMsg() {
 		return horseTameMsg;
