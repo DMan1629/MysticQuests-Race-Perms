@@ -50,6 +50,7 @@ public class CommandListener implements CommandExecutor {
 	private void reloadConfig(CommandSender sender) {
 		try {
 			Main.Config.readConfig();
+			Main.PermissionsManager.registerPermissions();
 			Utils.chatColorsPlugin(sender,"&aconfig reloaded!");
 		} catch (IOException e) {
 			Utils.chatColorsPlugin(sender,"&cunable to reload config!");

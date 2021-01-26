@@ -56,7 +56,7 @@ public class Config extends ConfigLoader {
 				"Disabled permissions will still use the Op option if it is turned on",
 				"To use formatting codes (https://minecraft.gamepedia.com/Formatting_codes) in String values, do &<code>,","or use &#<hex> to use hex color codes" +
 				"(https://htmlcolorcodes.com/color-picker)","","",
-				"Horse Taming - disallow horse taming without proper permission"," ",
+				"Command - command permission requirement"," ",
 				"commandPerm - the required permission to use the command; leave blank to disable (String) [" + permPrefix + ".command]",
 				"commandOp - do Op players have this permission by default (true/false) [true]"};
 		commandPerm = ((String) addNewConfigOption(config,"commandPerm",permPrefix + ".command",startMSG)).toLowerCase();
@@ -99,7 +99,7 @@ public class Config extends ConfigLoader {
 				"NetheriteActionBar - should a message be displayed on the player's Action Bar when they try upgrading Diamond to Netherite without permission " +
 				"(true/false) [true]"};
 		
-		NetheritePerm = ((String) addNewConfigOption(config,"NetheritePerm",permPrefix + ".Netherite",NetheriteMSG)).toLowerCase();
+		NetheritePerm = ((String) addNewConfigOption(config,"NetheritePerm",permPrefix + ".netherite",NetheriteMSG)).toLowerCase();
 		NetheriteOp = ((Boolean) addNewConfigOption(config,"NetheriteOp",Boolean.valueOf(true),null)).booleanValue();
 		NetheriteMsg = ((String) addNewConfigOption(config,"NetheriteMsg","&cYou do not have permission to upgrade &bDiamond &cto &7Netherite&c!",null));
 		NetheritePM = ((Boolean) addNewConfigOption(config,"NetheritePM",Boolean.valueOf(true),null)).booleanValue();
